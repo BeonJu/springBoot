@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>링크 href문</h1>
+<div>
+<a th:href="@{/thymeleaf/ex01}">상대 경로 ex01 이동</a>
+</div>
+
+<div>
+<a th:href="@{https://www.thymeleaf.org/}">절대 경로 thymeleaf 공홈 이동</a>
+</div>
+
+
+<div>
+<a th:href="@{/thymeleaf/ex06(para1='Hine', para2='asdf123df@')}">상대 경로 parametter를 가지고 ex06 이동</a>
+</div>
+	
+</body>
+</html>

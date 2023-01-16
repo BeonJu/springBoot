@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>상품 데이터 Each if 문 출력 예제</h1>
+<table border=1 width=1000px>
+<thead>
+<tr>
+<th>순번</th>
+<th>상품명</th>
+<th>상품 상세 설명</th>
+<th>가격</th>
+<th>등록일</th>
+</tr>
+
+</thead>
+<tbody>
+<tr th:each="itemDTO, status: ${list}">
+<!--  
+<td th:if="${status.even}" th:text="짝수" width=100px></td>    
+<td th:unless="${status.even}"  th:text="홀수"width=100px></td>-->
+<td th:switch="${status.even}" width=100px>
+	<span th:case=true>짝수</span>
+	<span th:case=false>홀수</span>
+</td>   
+<td th:text="${itemDTO.itemNm}" width=100px></td>
+<td th:text="${itemDTO.itemDetail}" width=100px></td>
+<td th:text="${itemDTO.price}" width=100px ></td>
+<td th:text="${itemDTO.regTime}" width=100px></td>
+</tr>
+</tbody>
+</table>
+	
+</body>
+</html>

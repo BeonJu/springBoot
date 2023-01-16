@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Header</title>
+
+</head>
+<body>
+	<div th:fragment="header">
+		<!-- style="background-color: #e3f2fd;" nav에 넣어주면 컬러 코드로 색상 지정 가능 -->
+		<nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark"
+			data-bs-theme="dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/"><img alt="Logo"
+					src="../iamges/logo.png" width="50"></a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/">Home</a></li>
+						
+						<li class="nav-item"><a class="nav-link" href="/admin/item/new">상품등록</a></li>
+						<li class="nav-item"><a class="nav-link" href="/admin/items">상품관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
+						<li class="nav-item"><a class="nav-link" href="/orders">구매이력</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
+
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</div>
+</body>
+</html>

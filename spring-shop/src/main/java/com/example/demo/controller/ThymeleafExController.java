@@ -32,7 +32,7 @@ public class ThymeleafExController {
 		itemDTO.setItemNm("Test Product");
 		itemDTO.setPrice(10000);
 		itemDTO.setItemDetail("Test is hard");
-		itemDTO.setRegTime(LocalDateTime.now());
+
 
 		model.addAttribute("itemDTO",itemDTO);
 		
@@ -52,7 +52,6 @@ public class ThymeleafExController {
 		itemDTO.setItemNm("Test Product" );
 		itemDTO.setPrice(10000+i);
 		itemDTO.setItemDetail("Test is hard"+i);
-		itemDTO.setRegTime(LocalDateTime.now());
 		list.add(itemDTO);
 		}
 		model.addAttribute("list",list);
@@ -72,7 +71,7 @@ public class ThymeleafExController {
 		itemDTO.setItemNm("Test Product" );
 		itemDTO.setPrice(10000+i);
 		itemDTO.setItemDetail("Test is hard"+i);
-		itemDTO.setRegTime(LocalDateTime.now());
+
 		list.add(itemDTO);
 		}
 		model.addAttribute("list",list);
@@ -107,13 +106,8 @@ public class ThymeleafExController {
 		return "thymeleafEx/thymeleafEx07";
 	}
 	
-	@GetMapping(value = "/ex07")
-	public String thymeleafEx07(Model model) {
+
 	
-		
-		
-		return "thymeleafEx/thymeleafEx07";
-	}
 	
 	
 

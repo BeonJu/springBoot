@@ -30,11 +30,6 @@ public class ItemDTO {
 
 		private ItemSellStatus itemSellStatus;  // 상품 판매상태
 		
-
-		private LocalDateTime regTime;  // 등록 시간
-
-		
-		private LocalDateTime updateTime; // 수정 시간
 		
 		
 	}

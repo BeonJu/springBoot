@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <!-- 로그인 로그아웃 화면 연동 및 role에 의한 user, admin 화면 분리 위한 url -->
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
@@ -12,7 +13,7 @@
 			data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/"><img alt="Logo"
-					src="../iamges/logo.png" width="50"></a>
+					src="/images/logo.png" width="50"></a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -23,13 +24,15 @@
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="/">Home</a></li>
-						
-						<li class="nav-item"><a class="nav-link" href="/admin/item/new">상품등록</a></li>
-						<li class="nav-item"><a class="nav-link" href="/admin/items">상품관리</a></li>
-						<li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
-						<li class="nav-item"><a class="nav-link" href="/orders">구매이력</a></li>
-						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
+						<!-- sec:authorize="hasAnyAuthority('ROLE_ADMIN')" 관리자 로그인 상태에서 보임  -->
+						<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a class="nav-link" href="/admin/item/new" >상품등록</a></li>
+						<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" ><a class="nav-link" href="/admin/items">상품관리</a></li>
+						<!-- sec:authorize="isAuthenticated()" 로그인 상태에서 보임  -->
+						<li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" href="/cart">장바구니</a></li>
+						<li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" href="/orders">구매이력</a></li>
+						<!-- sec:authorize="isAnonymous()" 비 로그인 상태에서 보임  -->
+						<li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 
 					</ul>
 					<form class="d-flex" role="search">

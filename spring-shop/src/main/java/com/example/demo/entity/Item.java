@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 import com.example.constance.ItemSellStatus;
+import com.example.demo.dto.ItemFormDTO;
 
 import lombok.*;
 
@@ -37,6 +38,17 @@ public class Item extends BaseEntity{
 	@Column
 	@Enumerated(EnumType.STRING)
 	private ItemSellStatus itemSellStatus;  // 상품 판매상태
+	
+	
+	
+    //itemFormDTO 매개변수를 받아서 값 입력
+	public void updateItem(ItemFormDTO itemFormDTO) {
+		this.itemNm = itemFormDTO.getItemNm();
+		this.price = itemFormDTO.getPrice();
+		this.stockNumber = itemFormDTO.getStockNumber();
+		this.itemDetail = itemFormDTO.getItemDetail();
+		this.itemSellStatus = itemFormDTO.getItemSellStatus();
+	}
 	
 	
 	

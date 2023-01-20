@@ -26,14 +26,14 @@
 <!-- content script page에 스크립트가 작성 될 위치-->
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-
-$(document).ready(function{
-	var errorMessage = [[${errorMessage}]];
-	if(errorMessage != null){
-		alert(errorMessage);
-	}
-	bindDomEvent();
-});
+		$(document).ready(function(){
+        	var errorMessage = [[${errorMessage}]];
+        	if(errorMessage != null){
+            	alert(errorMessage);
+        	}
+        	
+        	bindDomEvent();
+    	});
 
 
 
@@ -105,6 +105,7 @@ $(document).ready(function{
 				<div th:each="num: ${#numbers.sequence(1,5)}">
 					<div class="mb-3">
 						<label for="formFile" class="form-label custom-file-label" th:text="상품이미지 + ${num}"></label> 
+						
 						<input class="form-control custom-file-input" type="file" name="itemImgFile"
 							id="itemImgFile">
 					</div>
@@ -116,6 +117,7 @@ $(document).ready(function{
 				<div th:each="itemImgDTO, status: ${ItemFormDTO.itemImgDTOList}">
 					<div class="mb-3">
 						<label for="formFile" class="form-label custom-file-label" th:text="${not #strings.isEmpty(itemImgDTO.oriImgName)} ? ${itemImgDTO.oriImgName} : '상품이미지' + ${status.index+1}"></label> 
+						<input type="hidden" name="itemImgIds" th:value="${itemImgDTO.id}">
 						<input class="form-control custom-file-input" type="file" name="itemImgFile"
 							id="itemImgFile">
 					</div>
@@ -127,9 +129,11 @@ $(document).ready(function{
 			<div th:if="${#strings.isEmpty(ItemFormDTO.id)}" class="col-auto">
 				<button th:formaction="@{/admin/item/new}" type="submit" class="btn btn-primary mb-3">저장</button>
 			</div>
-						<div class="col-auto" th:unless="${#strings.isEmpty(ItemFormDTO.id)}">
+			
+			<div th:unless="${#strings.isEmpty(ItemFormDTO.id)}">
 				<button th:formaction="@{/admin/item/'+ ${ItemFormDTO.id)}}" type="submit" class="btn btn-primary mb-3">수정</button>
 			</div>
+			
 			<input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}">
 

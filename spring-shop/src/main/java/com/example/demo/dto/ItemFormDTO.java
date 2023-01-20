@@ -41,9 +41,9 @@ public class ItemFormDTO extends BaseEntity{
 
 	private ItemSellStatus itemSellStatus;  // 상품 판매상태
 	
-	private List<ItemImgDTD> itemImgDTOList = new ArrayList();  //상품의 이미지 정보를 저장하는 리스트, 하나의 상품에 이미지는 다수 이기 때문에 사용
+	private List<ItemImgDTD> itemImgDTOList = new ArrayList<>();  //상품의 이미지 정보를 저장하는 리스트, 하나의 상품에 이미지는 다수 이기 때문에 사용
 	
-	private List<Long> itemImgIds = new ArrayList();   //상품 이미지 id를 저장 , 수정 시에 이미지 id를 담아주는 용도(타겟팅)
+	private List<Long> itemImgIds = new ArrayList<>();   //상품 이미지 id를 저장 , 수정 시에 이미지 id를 담아주는 용도(타겟팅)
 	
 	private static ModelMapper modelMapper = new ModelMapper();
 	

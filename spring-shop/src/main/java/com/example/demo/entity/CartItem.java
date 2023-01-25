@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.example.constance.Role;
+import com.example.demo.constance.Role;
 
 import lombok.*;
 

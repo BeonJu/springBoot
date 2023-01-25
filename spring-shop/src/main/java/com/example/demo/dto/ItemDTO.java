@@ -2,8 +2,7 @@ package com.example.demo.dto;
 
 import java.time.LocalDateTime;
 
-
-import com.example.constance.ItemSellStatus;
+import com.example.demo.constance.ItemSellStatus;
 
 import lombok.*;
 

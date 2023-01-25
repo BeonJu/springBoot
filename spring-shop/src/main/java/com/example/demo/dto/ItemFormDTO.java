@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 
-import com.example.constance.ItemSellStatus;
+import com.example.demo.constance.ItemSellStatus;
 import com.example.demo.entity.BaseEntity;
 import com.example.demo.entity.Item;
 

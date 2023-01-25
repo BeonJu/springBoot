@@ -127,10 +127,23 @@ public class ItemController {
 		
 		model.addAttribute("items",items);
 		model.addAttribute("itemSearchDTO",itemSearchDTO);
-		model.addAttribute("maxpage",5);
+		model.addAttribute("maxPage",5);
 		
 		return "item/itemMng";
+		
+		
+		
 	}
+	
+	//상품 상세 페이지
+	@GetMapping(value = "/item/{itemId}")
+	public String itemDTL(Model model, @PathVariable("itemId") Long itemId) {
+		ItemFormDTO itemFormDTO =itemService.getItemDTL(itemId);
+		model.addAttribute("item",itemFormDTO);
+		
+		return "item/itemDTL";
+	}
+	
 	
 	
 	

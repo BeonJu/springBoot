@@ -3,10 +3,12 @@ package com.example.demo.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.example.constance.ItemSellStatus;
+import com.example.demo.constance.ItemSellStatus;
+import com.example.demo.dto.MainItemDTO;
 import com.example.demo.entity.Item;
 
 
@@ -32,4 +34,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredi
 	List<Item> findByItemSellStatusNotNull();
 	
 	List<Item> findByItemDetailLike(String itemDetail);
+
+
 }

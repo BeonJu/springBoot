@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.constance.Role;
+import com.example.demo.constance.Role;
 import com.example.demo.dto.MemberFormDTO;
 
 import lombok.*;

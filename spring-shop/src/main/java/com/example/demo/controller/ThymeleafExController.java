@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.constance.ItemSellStatus;
+import com.example.demo.constance.ItemSellStatus;
 import com.example.demo.dto.ItemDTO;
 import com.example.demo.entity.Item;
 

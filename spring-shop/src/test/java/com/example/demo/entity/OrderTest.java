@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.constance.ItemSellStatus;
+import com.example.demo.constance.ItemSellStatus;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.MemberRepository;

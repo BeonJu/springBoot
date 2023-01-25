@@ -10,15 +10,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.ItemFormDTO;
 import com.example.demo.dto.ItemImgDTD;
 import com.example.demo.dto.ItemSearchDTO;
+import com.example.demo.dto.MainItemDTO;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImg;
 import com.example.demo.repository.ItemImgRepository;
 import com.example.demo.repository.ItemRepository;
+import com.example.demo.repository.ItemRepositoryCustomImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -89,6 +92,9 @@ public class ItemService {
 		
 	}
 	
+
+	
+	
 	
 	//상품 수정
 		public Long updateItem(ItemFormDTO itemFormDTO, List<MultipartFile> itemImgFileList) throws Exception{
@@ -108,6 +114,13 @@ public class ItemService {
 		public Page<Item> getAdminItemPage(ItemSearchDTO itemSearchDTO, Pageable pageable){
 			
 			return itemRepository.getAdminItemPage(itemSearchDTO, pageable);
+		}
+		
+		
+		@Transactional(readOnly = true)
+		public Page<MainItemDTO> getMainItemPage(ItemSearchDTO itemSearchDTO, Pageable pageable){
+			
+			return itemRepository.getMainItemPage(itemSearchDTO, pageable);
 		}
 		
 }

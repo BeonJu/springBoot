@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.example.constance.OrderStatus;
+import com.example.demo.constance.OrderStatus;
 
 import lombok.*;
 
@@ -47,4 +47,40 @@ public class Order extends BaseEntity{
 	@OneToMany(mappedBy = "order" , cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)  //orderitem의 컬럼인 order에 의해 관리됨, 양방향으로 만들고 외래키의 관리를 한다는 의미
 	private List<OrderItem> orderItems = new ArrayList<>();
 
+	
+	public void addOrderItem(OrderItem orderItem) {
+		orderItems.add(orderItem);
+		
+		orderItem.setOrder(this);
+		//양방향 관계 이기 때문에 order 와 orderItem에 서로 셋팅 해줘야 된다.
+	}
+	//order 객체를 생성한다 하나의 주문에 item은 여러개 들어 갈수있다.
+	public static Order createOrder(Member member, List<OrderItem> orderItemsList) {
+		Order order = new Order();
+		order.setMember(member);
+		
+		for(OrderItem orderItem : orderItemsList) {
+			order.addOrderItem(orderItem);
+			
+		}
+		order.setOrderStatus(OrderStatus.ORDER);
+		order.setOrderDate(LocalDateTime.now());
+		
+		
+		return order;
+		
+	}
+	
+	//총 주문금액
+	public int getTotalPrice() {
+		int totalPrice = 0;
+		for(OrderItem orderItem : orderItems) {
+			totalPrice += orderItem.getTotalPrice();
+		}
+		return totalPrice;
+	}
+	
+	
+	
+	
 }

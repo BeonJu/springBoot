@@ -14,6 +14,7 @@ import com.example.demo.entity.Item;
 
 //CRUD , Paging 처리 를 위한 메소스 정의
 //QuerydslPredicateExecutor QueryDSL 사용하기 위한놈
+
 public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item>, ItemRepositoryCustom{
 
 	List<Item> findByItemNm(String itemNm);

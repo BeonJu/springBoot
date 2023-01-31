@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.time.LocalDateTime;
+
 
 import javax.persistence.*;
 
@@ -60,6 +60,11 @@ public class Item extends BaseEntity{
 		}
 		
 		this.stockNumber = restStock; // 주문 후 남은 재고수량을 상품의 현재 재고 수량 값으로 할당	
+	}
+	
+	//상품의 재고 증가 로직
+	public void addStock(int stockNumber) {
+		 this.stockNumber += stockNumber;
 	}
 	
 	

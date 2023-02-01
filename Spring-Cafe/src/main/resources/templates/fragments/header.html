@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+ <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  
+<title>Cafe Reservation</title>
+
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<!-- thymeleaf fragment setting -->
+	<div th:fragment="header">
+	
+		<header id="header" class="header d-flex align-items-center fixed-top" style=" flex-direction: column;">
+		<div>
+			<a href="/" class="logo d-flex align-items-center  me-auto me-lg-0" style="flex-flow:column; ">
+				<!-- Uncomment the line below if you also wish to use an image logo -->
+				<img src="/img/logo/logoyogo-1-61-re.jpg" alt="logo" style="max-height: 80px;"> 
+				<!--  <i class="bi bi-camera"></i>-->
+				
+				<h1>Cafe Reservation</h1>
+			</a>
+			</div>
+			<!-- container-fluid -->
+			<div class="d-flex align-items-center" >
+				<!-- admin store register & store delete -->
+				<div class="header-social-links">
+					<a class="cta-btn-storeReg" href="#">가게 등록</a>
+					<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+					<a class="cta-btn-storeDel" href="#">가게 삭제</a>
+				</div>
+				
+				<!-- Search input box -->
+				<div id="search" class="search">
+				<form>
+				<input type="text">
+				<button>검색</button>
+				</form>
+				</div>
+				
+				<!-- login & logout -->
+				<div class="header-social-links">
+					<a class="cta-btn-login" href="#">Login</a>
+					<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+					<a class="cta-btn-signup" href="#">SignUp</a>
+				</div>
+				<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i> <i
+					class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+			</div>
+		</header>
+		<!-- End Header -->
+	</div>
+
+
+	<!-- Vendor JS Files -->
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/vendor/aos/aos.js"></script>
+	<script src="/vendor/php-email-form/validate.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

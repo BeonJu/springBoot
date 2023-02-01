@@ -137,6 +137,72 @@ h6 {
   background: #2cbc85;
 }
 
+.header-social-links .cta-btn-login {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  padding: 17px 25px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: #FF4500;
+  margin-left: 400px;
+  
+}
+
+.header-social-links .cta-btn-signup {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  padding: 17px 25px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: #FF1493;
+}
+
+
+.header-social-links .cta-btn-storeReg {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  padding: 17px 25px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: #BA55D3;
+
+  
+}
+
+.header-social-links .cta-btn-storeDel {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  padding: 17px 25px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: #C71585;
+}
+
+
+.search{
+margin-left: 380px;
+}
+
 /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/
@@ -327,8 +393,10 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 40px;
+ max-height:40px;
   margin-right: 8px;
+  border-radius: 35px;
+  
 }
 
 .header .logo h1 {
@@ -361,7 +429,7 @@ h6 {
 
 .header .header-social-links a {
   color: rgba(255, 255, 255, 0.5);
-  padding-left: 15px;
+  /*padding-left: 15px;*/
   display: inline-block;
   line-height: 0px;
   transition: 0.3s;
@@ -745,8 +813,9 @@ h6 {
 }
 
 .gallery .gallery-item {
+
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
   border-radius: 10px;
 }
 
@@ -756,7 +825,7 @@ h6 {
 
 .gallery .gallery-links {
   position: absolute;
-  inset: 0;
+  /*inset: 0;*/
   opacity: 0;
   transition: all ease-in-out 0.3s;
   background: rgba(0, 0, 0, 0.6);

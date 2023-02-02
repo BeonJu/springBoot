@@ -105,7 +105,28 @@ document.addEventListener('DOMContentLoaded', () => {
    * Init swiper slider with 1 slide at once in desktop view
    */
   new Swiper('.slides-1', {
-    speed: 600,
+	loop: true,
+	autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+        effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      }
+    
+    
+    /*speed: 600,
     loop: true,
     autoplay: {
       delay: 5000,
@@ -120,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
-    }
+    }*/
   });
 
   /**
@@ -129,10 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
   new Swiper('.slides-3', {
     speed: 600,
     loop: true,
-    autoplay: {
+    /*autoplay: {
       delay: 5000,
       disableOnInteraction: false
-    },
+    },*/
     slidesPerView: 'auto',
     pagination: {
       el: '.swiper-pagination',
@@ -169,5 +190,20 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     aos_init();
   });
+  
+  	  /*
+	  * store detail slide img onmuousover main img change 
+	  */
+	  var bigImg = document.querySelector('#detailMainImg'); //큰 이미지 가져오기
+
+	  function showImg() {
+	      var newImg = this.src; //클릭 이벤트가 발생한 대상의 src 속성 값을 가져옴
+	      //bigImg.setAttribute('src', newImg);  //newImg 값을 큰 이미지의 src 속성 값에 할당
+	      bigImg.src = newImg;
+	     
+	  }
+		
+  
+
 
 });

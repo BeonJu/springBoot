@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/mainLayout}">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap"
+	rel="stylesheet">
+
+<!-- swiper css -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+
+
+<!-- Vendor CSS Files -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/vendor/aos/aos.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/css/main.css" rel="stylesheet">
+<title>Insert title here</title>
+<!-- 각 페이지의 스크립트가 작성될 위치 -->
+
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		
+	</script>
+</th:block>
+<!-- =======================================================
+  * Template Name: PhotoFolio - v1.2.0
+  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+	<!-- themleaf fragment content start -->
+	<div layout:fragment="content">
+
+		<main id="main" data-aos="fade" data-aos-delay="1500">
+
+			<!-- ======= End Page Header ======= -->
+			<div class="page-header d-flex align-items-center"
+				style="top: 100px;">
+				<div class="container position-relative"
+					style="border-bottom: 1px solid white; padding-bottom: 0;">
+					<h2>Reservation</h2>
+				</div>
+			</div>
+			<!-- End Page Header -->
+
+			<!-- ======= Services Section ======= -->
+			<section id="services" class="services">
+				<div class="container">
+					<div class="row gy-4" style="padding-top: 50px; margin: 0 auto;">
+						<div class="service-item " style="margin-right: 20px;">
+							<img src="/img/mainImages/6.jpg" alt="img"
+								style="width: 100%; height: 100%;" />
+						</div>
+						<div class="service-item" style="width: 67%;">
+							<ul style="list-style-type: none;" class="store-info">
+								<li>상호명: cafe name</li>
+								<li>소개 페이지:</li>
+								<li style="display: flex;">
+									<div>
+										<span>예약일 선택</span> <select>
+											<option></option>
+											<option>2023-02-23 15:30</option>
+											<option>2023-02-23 16:30</option>
+											<option>2023-02-23 17:30</option>
+											<option>2023-02-23 18:30</option>
+											<option>2023-02-23 19:30</option>
+										</select>
+									</div>
+									<div>
+										<span>예약 인원</span> <select>
+											<option></option>
+											<option>2명</option>
+											<option>3명</option>
+											<option>4명</option>
+										</select>
+									</div>
+								</li>
+								<li>메뉴 선택 <select>
+										<option></option>
+										<option>와플 커피 셋트</option>
+										<option>와플 아이스크림 셋트</option>
+										<option>와플 과일 셋트</option>
+										<option>젤라또 셋트</option>
+								</select>
+								</li>
+							</ul>
+							<p>
+								<span style="margin-left: 70%; margin-top: 30px;">가격: 원</span>
+							</p>
+							<div style=" margin-left: 70%; margin-top: 10px;">
+								<a href="/item/check" style="text-decoration: none;">예약하기</a>
+							</div>
+						</div>
+
+						<!-- End Service Item -->
+
+					</div>
+
+				</div>
+			</section>
+			<!-- End Services Section -->
+
+			<!-- ======= Pricing Section ======= -->
+			<section id="pricing" class="pricing">
+				<div class="container">
+
+					<div class="section-header">
+						<h2>Prices</h2>
+						<p>Check my adorable pricing</p>
+					</div>
+
+					<div class="row gy-4 gx-lg-5">
+
+						<div class="col-lg-6">
+							<div class="pricing-item d-flex justify-content-between">
+								<h3>메뉴 이름</h3>
+								<h4>메뉴 가격</h4>
+							</div>
+						</div>
+						<!-- End Pricing Item -->
+
+						<div class="col-lg-6">
+							<div class="pricing-item d-flex justify-content-between">
+								<h3>Fashion Photography</h3>
+								<h4>$300.00</h4>
+							</div>
+						</div>
+						<!-- End Pricing Item -->
+
+						<div class="col-lg-6">
+							<div class="pricing-item d-flex justify-content-between">
+								<h3>Sports Photography</h3>
+								<h4>$200.00</h4>
+							</div>
+						</div>
+						<!-- End Pricing Item -->
+
+						<div class="col-lg-6">
+							<div class="pricing-item d-flex justify-content-between">
+								<h3>Still Life Photography</h3>
+								<h4>$120.00</h4>
+							</div>
+						</div>
+						<!-- End Pricing Item -->
+
+						<div class="col-lg-6">
+							<div class="pricing-item d-flex justify-content-between">
+								<h3>Wedding Photography</h3>
+								<h4>$500.00</h4>
+							</div>
+						</div>
+						<!-- End Pricing Item -->
+
+						<div class="col-lg-6">
+							<div class="pricing-item d-flex justify-content-between">
+								<h3>Photojournalism</h3>
+								<h4>$200.00</h4>
+							</div>
+						</div>
+						<!-- End Pricing Item -->
+
+					</div>
+				</div>
+			</section>
+			<!-- End Pricing Section -->
+
+		</main>
+		<!-- End #main -->
+	</div>
+
+
+	<!-- Vendor JS Files -->
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/vendor/aos/aos.js"></script>
+	<script src="/vendor/php-email-form/validate.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="/js/main.js"></script>
+
+	<!-- Swiper JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+</body>
+</html>

@@ -30,7 +30,14 @@
 
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-		
+	function delOk(){
+	    if(confirm('해당 예약을 취소 하시겠습니까?')){
+	    	 alert("예약이 취소 되었습니다.");
+	    	 return true;
+	    }else{
+	    	return false;
+	    }
+	}
 	</script>
 </th:block>
 <!-- =======================================================
@@ -60,13 +67,55 @@
 
 			<!-- ======= Services Section ======= -->
 			<section id="services" class="services">
-			
-				<div style="border: 1px solid white; width: 70%; height: 500px; margin:0 auto; margin-top: 80px; border-radius: 15px; display: flex; flex-wrap: wrap;">
-				<div style="width: 100%; height: 20px; margin: 0px; padding: 0px;"><span>예약 완료</span></div>
-				<div style="margin-left: 20px; margin-top: 20px; border: 0.5px solid white; width: 250px; height: 250px;">
-				<img src="/img/mainImages/2.jpg" alt="img" style="width: 100%; height: 100%;"/>
-				</div>
-				<div style="border: 1px solid white; width: 500px; height: 250px; margin-top: 20px; margin-left: 20px;">
+
+				<div
+					style="border: 1px solid white; width: 70%; height: 500px; margin: 0 auto; margin-top: 80px; border-radius: 15px;">
+					<div style="width: 100%; height: 20px; margin-left:10px; margin-right:10px;  padding:20px; padding-bottom:40px; overflow: hidden; line-height:20px; ">
+						<span class="reservation-check-status">예약 완료</span>
+						<span style="margin-left:83%; margin-right: 20px; cursor: pointer;" class="reservation-btn" onclick="delOk()">예약 취소</span>
+					</div>
+					<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+					<div
+						style="margin-top: 20px; border: 0.5px solid white; width: 250px; height: 400px;">
+						<img src="/img/mainImages/2.jpg" alt="img"
+							style="width: 100%; height: 100%;" />
+					</div>
+					<div
+						style="border: 1px solid white; width: 800px; height: 400px; margin-top: 20px; margin-left: 20px;">
+						<table class="reservation-table">
+							<tr class="reservation-table-tr">
+								<th class="reservation-table-th">상호명:</th>
+								<td class="reservation-table-td">cafe name</td>
+							</tr>
+							<tr class="reservation-table-tr">
+								<th class="reservation-table-th">메뉴:</th>
+								<td class="reservation-table-td">젤라또 4인 셋트, 아메리카노 4잔(M) 추가</td>
+							</tr>
+							<tr class="reservation-table-tr">
+								<th class="reservation-table-th">인원:</th>
+								<td class="reservation-table-td">4인</td>
+							</tr>
+							<tr class="reservation-table-tr">
+								<th class="reservation-table-th">주소:</th>
+								<td class="reservation-table-td">서울특별시 관악구 ~</td>
+							</tr>
+							<tr style="border-bottom: 1px solid white;">
+								<td></td>
+							</tr>
+							<tr class="reservation-table-tr" style="text-align: center;">
+								<td class="reservation-table-td">예약일</td>
+								<td class="reservation-table-td">방문 예정일</td>
+							</tr>
+							<tr class="reservation-table-tr" style="text-align: center;">
+								<td class="reservation-table-td">2023-02-23 20:30</td>
+								<td class="reservation-table-td">2023-02-23 20:30</td>
+							</tr>
+
+						</table>
+</div>
+
+
+						<!--  
 				<ul class="store-info">
 				<li>상호명: cafe name </li>
 				<li>메뉴: 젤라또 셋트</li>
@@ -86,10 +135,12 @@
 				<td>yyyy-mm-dd 24h:hh-mm</td>
 				</tr>
 				</table>
+				-->
+					</div>
+
+
 				</div>
-				
-				
-				</div>
+
 			</section>
 			<!-- End Pricing Section -->
 

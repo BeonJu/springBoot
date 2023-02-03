@@ -1391,5 +1391,62 @@ margin-left: 380px;
 	margin: 15px 0;
 }
 
+/*reservation-table*/
+.reservation-table{
+	/*border: 1px solid white;*/
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 700px;
+	height: 350px;
+ 
+}
+
+.reservation-table-tr{
+	/*border: 1px solid white;*/
+	width: auto;
+}
+.reservation-table-th{ text-align: center;width: auto;}
+.reservation-table-td{width: auto;}
+
+
+.reservation-btn{
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  color: #fff;
+  background: #FF1493;
+}
+
+
+.reservation-btn:hover {
+  color: black;
+  text-decoration: none;
+}
+
+
+.reservation-check-status{
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  color: #fff;
+  background: #228B22;
+}
+
+
+.reservation-check-status:hover {
+   background:#32CD32;
+  text-decoration: none;
+}
 
 

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class storeController {
+public class StoreController {
 
 	@GetMapping(value = "/admin/store/register")
 	public String storeRegister() {

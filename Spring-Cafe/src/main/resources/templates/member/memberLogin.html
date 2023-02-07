@@ -65,13 +65,13 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center"> Cafe Reservation Login</h3>
-		      	<form action="#" class="signin-form needs-validation" novalidate>
+		      	<form class="signin-form needs-validation" novalidate action="/member/login" method="post" >
 		      		<div class="form-group has-validation">
-		      			<input type="text" class="form-control" placeholder="ID"style=" background-color: black;" required>
-		      			<div class="invalid-feedback">Please insert a ID.</div>
+		      			<input type="email" name="email" id="email" class="form-control" placeholder="E-MAIL"style=" background-color: black;" required>
+		      			<div class="invalid-feedback">Please insert a E-Mail.</div>
 		      		</div>
 	            <div class="form-group has-validation">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" required style=" background-color: black;">
+	              <input id="password" name="password" type="password" class="form-control" placeholder="Password" required style=" background-color: black;">
 	              <div class="invalid-feedback">Please insert a password.</div>
 	              
 	            </div>
@@ -89,6 +89,7 @@
 									<a href="#" style="color: #fff">Forgot Password</a>
 								</div>
 	            </div>
+	            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	          </form>
 	          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
 	          <div class="social d-flex text-center">
@@ -99,6 +100,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</section>
 
 

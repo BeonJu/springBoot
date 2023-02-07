@@ -48,7 +48,13 @@
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
 		
-	
+	//회원가입에 실패했을 때 
+	$(document).ready(function{
+		var errorMessage = [[${errorMessage}]];
+		if(errorMessage != null){
+			alert(errorMessage);
+		}
+	})
 	
 	</script>
 </th:block>
@@ -73,51 +79,75 @@
 						<div class="col-md-6 col-lg-4">
 							<div class="login-wrap p-0">
 								<h3 class="mb-4 text-center">Cafe Reservation Sign Up</h3>
-								<form  class="signin-form needs-validation" novalidate>
+								<form class="signin-form needs-validation" novalidate
+									action="/member/signup" method="post" th:object="${MemberDto}">
 									<div class="form-group has-validation">
-										<input type="text" class="form-control" placeholder="Name" style="background-color: black;"  required>
+										<input type="text" th:field="*{name}" class="form-control"
+											placeholder="Name" style="background-color: black;" required>
+										<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+											class="fieldError">Incorrect Data</p>
 										<div class="invalid-feedback">Please choose a name.</div>
 									</div>
 									<div class="form-group has-validation">
-										<input type="email" class="form-control" placeholder="Email"
-											style="background-color: black;" required>
-											<div class="invalid-feedback">Please choose a email.</div>
+										<input type="email" th:field="*{email}" class="form-control"
+											placeholder="Email" style="background-color: black;" required>
+										<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+											class="fieldError">Incorrect Data</p>
+										<div class="invalid-feedback">Please choose a email.</div>
 									</div>
 									<div class="form-group has-validation">
-										<input type="password" class="form-control"
-											placeholder="Password" style="background-color: black;"
+										<input type="password" th:field="*{password}"
+											class="form-control" placeholder="Password"
+											style="background-color: black;" required>
+										<p th:if="${#fields.hasErrors('password')}"
+											th:errors="*{password}" class="fieldError">Incorrect Data</p>
+										<div class="invalid-feedback">Please choose a password.</div>
+									</div>
+									<div class="form-group has-validation">
+										<input type="password" th:field=*{passwordAgain}
+											class="form-control" placeholder="Password again"
+											style="background-color: black;" required>
+										<p th:if="${#fields.hasErrors('passwordAgain')}"
+											th:errors="*{passwordAgain}" class="fieldError">Incorrect
+											Data</p>
+										<div class="invalid-feedback">Please choose a password
+											again.</div>
+									</div>
+									<div class="form-group has-validation">
+										<input type="text" th:field="*{phone}" class="form-control"
+											placeholder="Phone" style="background-color: black;" required>
+										<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+											class="fieldError">Incorrect Data</p>
+										<div class="invalid-feedback">Please choose a phone.</div>
+									</div>
+									<div class="form-group has-validation">
+										<input type="text" th:field="*{address}" class="form-control"
+											placeholder="Address" style="background-color: black;"
 											required>
-											<div class="invalid-feedback">Please choose a password.</div>
+										<p th:if="${#fields.hasErrors('address')}"
+											th:errors="*{address}" class="fieldError">Incorrect Data</p>
+										<div class="invalid-feedback">Please choose a address.</div>
 									</div>
-									<div class="form-group has-validation">
-										<input type="password" class="form-control"
-											placeholder="Password again" style="background-color: black;"
-											required>
-											<div class="invalid-feedback">Please choose a password.</div>
-									</div>
-									<div class="form-group has-validation">
-										<input type="text" class="form-control" placeholder="Phone"
-											style="background-color: black;" required>
-											<div class="invalid-feedback">Please choose a phone.</div>
-									</div>
-									<div class="form-group has-validation">
-										<input type="text" class="form-control" placeholder="Address"
-											style="background-color: black;" required>
-											<div class="invalid-feedback">Please choose a address.</div>
-									</div>
-								<p class="w-100 text-center">&mdash; Welcome &mdash;</p>
-								<div class="form-group">
-									<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
-								</div>
-								<div class="social d-flex text-center">
-									<a href="/member/login" class="px-2 py-2 mr-md-1 rounded btn submit"
-										style="border: 1px solid white;"
-										onclick="validate(); return false;">Login</a> <a href="/"
-										class="px-2 py-2 ml-md-1 rounded"
-										style="border: 1px solid white;">Cancel</a>
-								</div>
-								</form>
+									<p class="w-100 text-center">&mdash; Welcome &mdash;</p>
 
+									<div class="form-group">
+										<button type="submit"
+											class="form-control btn btn-primary submit px-3">Sign
+											Up</button>
+									</div>
+									<!-- 토큰 -->
+									<input type="hidden" th:name="${_csrf.parameterName}"
+										th:value="${_csrf.token}">
+
+									<div class="social d-flex text-center">
+										<a href="/member/login"
+											class="px-2 py-2 mr-md-1 rounded btn submit"
+											style="border: 1px solid white;"
+											onclick="validate(); return false;">Login</a> <a href="/"
+											class="px-2 py-2 ml-md-1 rounded"
+											style="border: 1px solid white;">Cancel</a>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

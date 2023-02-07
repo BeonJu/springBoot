@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!-- 로그인 로그아웃 화면 연동 및 role에 의한 user, admin 화면 분리 위한 url -->
 
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
- <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  
+<!-- Vendor CSS Files -->
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
 <title>Cafe Reservation</title>
 
 </head>
@@ -21,49 +26,72 @@
 	<!-- ======= Header ======= -->
 	<!-- thymeleaf fragment setting -->
 	<div th:fragment="header">
-	
-		<header id="header" class="header d-flex align-items-center fixed-top" style=" flex-direction: column;">
-		<div>
-			<a href="/" class="logo d-flex align-items-center  me-auto me-lg-0" style="flex-flow:column; ">
-				<!-- Uncomment the line below if you also wish to use an image logo -->
-				<img src="/img/logo/logoyogo-1-61-re.jpg" alt="logo" style="max-height: 80px;"> 
-				<!--  <i class="bi bi-camera"></i>-->
-				
-				<h1>Cafe Reservation</h1>
-			</a>
+
+		<header id="header" class="header d-flex align-items-center fixed-top"
+			style="flex-direction: column;">
+			<div>
+				<a href="/" class="logo d-flex align-items-center  me-auto me-lg-0"
+					style="flex-flow: column;"> <!-- Uncomment the line below if you also wish to use an image logo -->
+					<img src="/img/logo/logoyogo-1-61-re.jpg" alt="logo"
+					style="max-height: 80px;"> <!--  <i class="bi bi-camera"></i>-->
+
+					<h1>Cafe Reservation</h1>
+				</a>
 			</div>
 			<!-- container-fluid -->
-			<div class="d-flex align-items-center" >
+			<div class="d-flex align-items-center">
 				<!-- admin store register & store delete -->
-				<div class="header-social-links">
-					<a class="cta-btn-storeReg" href="/admin/store/register">가게 등록</a>
-					<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-					<a class="cta-btn-storeDel" href="/admin/store/delete">가게 삭제</a>
+				<div class="header-social-links" style="display: flex;">
+					<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+						<a class="cta-btn-storeReg" href="/admin/store/register">가게 등록</a>
+					</div>
+					<div sec:authorize="isAnonymous()" style="background-color: black; margin-left: 300px;"></div>
+					<div sec:authorize="hasAnyAuthority('ROLE_USER')" style="background-color: black; margin-left: 300px;"></div>
+					<span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+					<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+						<a class="cta-btn-storeDel" href="/admin/store/delete">가게 삭제</a>
+					</div>
 				</div>
-				
+
 				<!-- Search input box -->
 				<div id="search" class="search">
-				<form>
-				<input type="text">
-				<button>검색</button>
-				</form>
+					<form th:action="@{/}" method="get">
+						<input type="search" name="searchQuery" placeholder="Search">
+						<button type="submit">검색</button>
+					</form>
+				</div>
+
+				<!-- login & logout -->
+				<div class="header-social-links" style="display: flex;" sec:authorize="isAnonymous()">
+					<div sec:authorize="isAnonymous()">
+						<a class="cta-btn-login" href="/member/login">Login</a>
+					</div>
+					<span sec:authorize="isAnonymous()">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+					<div sec:authorize="isAnonymous()">
+						<a class="cta-btn-signup" href="/member/signup">SignUp</a>
+					</div>
+					
+					
+				</div>
+
+            <!-- login & logout -->
+				<div class="header-social-links" style="display: flex;" sec:authorize="isAuthenticated()">
+					<div sec:authorize="isAuthenticated()">
+						<a class="cta-btn-login" href="/item/check">예약 확인</a>
+					</div>
+					<span sec:authorize="isAuthenticated()">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+					<div sec:authorize="isAuthenticated()">
+						<a class="cta-btn-login" href="/member/logout" style="margin-left: 0px;">Logout</a>
+					</div>
 				</div>
 				
-				<!-- login & logout -->
-				<div class="header-social-links">
-					<a class="cta-btn-login" href="/member/login">Login</a>
-					<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-					<a class="cta-btn-signup" href="/member/signup">SignUp</a>
-				</div>
+				
 				<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i> <i
 					class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
 			</div>
 		</header>
 		<!-- End Header -->
 	</div>
-
-
 	<!-- Vendor JS Files -->
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/vendor/swiper/swiper-bundle.min.js"></script>

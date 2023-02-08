@@ -36,14 +36,13 @@
 
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-		function delOk() {
-			if (confirm('해당 예약을 취소 하시겠습니까?')) {
-				alert("예약이 취소 되었습니다.");
-				return true;
-			} else {
-				return false;
-			}
-		}
+	
+	function uploadFileCheck(){
+	if( document.getElementById("formFileMultiple").files.length >=6 ){
+	    alert("이미지 업로드는 최대 5장 입니다.");
+	    return false;
+	}
+	}
 	</script>
 </th:block>
 <!-- =======================================================
@@ -73,53 +72,59 @@
 
 			<!-- ======= Services Section ======= -->
 			<section id="services" class="services">
-
-				<div
-					style="display: flex; flex-direction: column; justify-content: center; width: 60%; margin: 0 auto; margin-top: 70px;">
-
+			<form method="post" enctype="multipart/form-data" th:object="${cafeRegisterDto}">
+				<div style="display: flex; flex-direction: column; justify-content: center; width: 60%; margin: 0 auto; margin-top: 70px;">
+					<input type="hidden" th:field="*{id}">
 					<div class="mb-3" style="margin-bottom: 15px;">
+					
 						<label for="formFile" class="form-label">상호명</label> <input
 							class="form-control" type="text" id="formFile"
-							placeholder="상호명을 입력 해주세요.">
+							placeholder="상호명을 입력 해주세요." th:field="*{businessName}">
 					</div>
 					<div class="mb-3" style="margin-top: 15px; margin-bottom: 15px;">
 						<label for="formFile" class="form-label">점주</label> <input
 							class="form-control" type="text" id="formFile"
-							placeholder="점주님 성함을 입력 해주세요.">
+							placeholder="점주님 성함을 입력 해주세요." th:field="*{ownerName}">
 					</div>
 					<div class="mb-3" style="margin-top: 15px; margin-bottom: 15px;">
 						<label for="formFile" class="form-label">연락처</label> <input
 							class="form-control" type="text" id="formFile"
-							placeholder="연락처를 입력 해주세요.">
+							placeholder="연락처를 입력 해주세요." th:field="*{phone}">
 					</div>
 					<div class="mb-3" style="margin-top: 15px; margin-bottom: 15px;">
 						<label for="formFile" class="form-label">주소</label> <input
 							class="form-control" type="text" id="formFile"
-							placeholder="주소를 입력 해주세요.">
+							placeholder="주소를 입력 해주세요." th:field="*{address}">
 					</div>
-					<div class="mb-3" style="margin-top: 15px; margin-bottom: 15px;">
-						<label for="formFileMultiple" class="form-label">이미지</label> <input
-							class="form-control" type="file" id="formFileMultiple" multiple>
-						<span style="font-size: 0.7em; margin-left: 20px;">Tip. 이미지
+					
+					
+					<div th:if="${#lists.isEmpty(cafeRegisterDto.regCafeImgDtoList)}" style="margin-top: 15px; margin-bottom: 15px;">
+				<div th:each="num: ${#numbers.sequence(1,5)}">
+					<div class="mb-3">
+  						<label for="formFile" class="form-label custom-file-label" th:text="가게이미지 + ${num}"></label>
+  						<input class="form-control custom-file-input" type="file" id="cafeImgFile" name="cafeImgFile">
+  						<span style="font-size: 0.7em; margin-left: 20px;">Tip. 이미지
 							업로드는 최대 5장 입니다.</span>
 					</div>
+				</div>
+			</div>
+					
 					<div class="mb-3" style="margin-top: 15px; margin-bottom: 15px;">
 						<label for="exampleFormControlTextarea1" class="form-label">가게
 							소개</label>
 						<textarea class="form-control" id="exampleFormControlTextarea1"
-							rows="3"></textarea>
+							rows="3" th:field="*{info}"></textarea>
 					</div>
-					<div style="margin: 0 auto;">
-						<button type="button" class="btn btn-outline-success"
-							style="margin-right: 150px; padding: 15px 25px; color: white;">등록</button>
+					<div style="margin: 0 auto;" th:if="${#strings.isEmpty(cafeRegisterDto.id)}">
+						<button type="submit" th:formaction="@{/admin/store/register}" class="btn btn-outline-success"
+							style="margin-right: 150px; padding: 15px 25px; color: white;" onclick="uploadFileCheck()">등록</button>
 						<button type="button" class="btn btn-outline-danger"
 							style="margin-left: 150px; padding: 15px 25px; color: white;">취소</button>
 					</div>
 
-
-
 				</div>
-
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+</form>
 
 
 			</section>

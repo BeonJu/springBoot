@@ -18,9 +18,6 @@ public class ItemController {
 		return "item/itemReservation";
 	}
 	
-	
-	
-	
 	@GetMapping(value = "/item/check")
 	public String itemCheck() {
 		

@@ -45,13 +45,13 @@
 					<div class="row gy-5 justify-content-center"
 						style="display: flex; flex-wrap: wrap; width: 1200px; margin: 0 auto;">
 						<!-- each문으로 리스트 객체 없을 떄 까지 돌릴 예정 -->
-						
+						<th:block th:each="cafe, status: ${cafes.getContent()}">
 						<div class="col-xl-2 col-lg-1 col-md-6"
 							style="border: 2px solid white; border-radius: 12px; width: 30%; height: 650px; margin-left: 10px; margin-right: 10px;">
 							<!-- img div start -->
 							<div class="gallery-item" style="height: 85%; margin: 0 auto;">
-								<a href="/item/detail"> <img src="/img/mainImages/1-re.jpg"
-									class="img-fluid" alt="${imgId}"
+								<a th:href="'/item/' + ${cafe.id}"> <img th:src="${cafe.imgUrl}"
+									class="img-fluid" th:alt="${cafe.businessName}"
 									style="border: 0.5px solid white; margin-top: 6px;">
 								</a>
 							</div>
@@ -62,22 +62,23 @@
 							</p>-->
 							<div class=""
 								style="display: flex; justify-content: space-between;">
-								<span>상호명: 서울어딘가</span><span>location: 서울여긴가</span>
+								<span>상호명: [[${cafe.businessName}]]</span><span>location: [[${cafe.address}]]</span>
 							</div>
 						</div>
 						<!-- End Gallery Item -->
+						</th:block>
 
 
 						
 						<div>
-							<nav style="padding-top: 15px;">
+							<nav style="padding-top: 15px;" th:with="start=${(cafes.number/maxPage)*maxPage + 1},
+							end=(${(cafes.totalPages == 0) ? 1:(start + (maxPage -1 ) < cafes.totalPages ? start + (maxPage -1) : cafes.totalPages)})">
 								<ul class="pagination" style="justify-content: center;">
-									<li class="page-item"><a class="page-link">Previous</a></li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item " aria-current="page"><a
-										class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a>
+									<li class="page-item" th:classappend="${cafes.first}?'disabled'"><a class="page-link" th:href="@{'/' + '?searchQuery=' + ${cafeSearchDto.searchQuery} + '&page=' + ${cafes.number - 1}}">Previous</a></li>
+									<li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cafes.number eq page-1} ? 'active':''">
+									<a class="page-link" th:inline="text" th:href="@{'/' + '?searchQuery=' + ${cafeSearchDto.searchQuery} + '&page=' + ${page -1} }">[[${page}]]</a></li>
+									<li class="page-item" th:classappend="${cafes.last} ? 'disabled'">
+									<a class="page-link" th:href="@{'/' + '?searchQuery=' + ${cafeSearchDto.searchQuery} + '&page=' + ${cafes.number+1}}">Next</a>
 									</li>
 								</ul>
 							</nav>

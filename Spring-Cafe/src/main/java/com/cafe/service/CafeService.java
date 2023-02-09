@@ -2,11 +2,16 @@ package com.cafe.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cafe.dto.CafeDetailDto;
 import com.cafe.dto.CafeRegisterDto;
+import com.cafe.dto.CafeSearchDto;
+import com.cafe.dto.MainCafeDto;
 import com.cafe.entity.CafeImg;
 import com.cafe.entity.CafeRegister;
 import com.cafe.repository.CafeImgRepository;
@@ -18,9 +23,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 public class CafeService {
+	
 	private final CafeRepository cafeRepository;
-	private final CafeImgRepository cafeImgRepository;
 	private final CafeImgService cafeImgService;
+	private final CafeImgRepository cafeImgRepository;
 	
 	//가게 등록
 	public Long regCafe(CafeRegisterDto cafeRegisterDto, List<MultipartFile> cafeImgFileList) throws Exception{
@@ -42,9 +48,45 @@ public class CafeService {
 			}
 			
 			cafeImgService.saveCafeImg(cafeImg, cafeImgFileList.get(i));
-		
 		}
 		return cafeRegister.getId();
+	}
+	
+	
+	
+	
+	//상품 가져오기(카페 상세 페이지 )
+	@Transactional(readOnly = true) //트랜잭션 읽기 전용(변경감지 수행하지 않음) -> 성능향상
+	public CafeDetailDto getItemDtl(Long itemId) {
+		//1. item_img테이블의 이미지를 가져온다.
+		List<CafeImg> cafeImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+		List<CafeDetailDto> cafeImg	DtoList = new ArrayList<>();
+		
+		//엔티티 객체 -> dto객체로 변환
+		for(ItemImg itemImg : itemImgList) {
+			ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
+			itemImgDtoList.add(itemImgDto);
+		}
+		
+		//2. item테이블에 있는 데이터를 가져온다.
+		Item item = itemRepository.findById(itemId)
+				                  .orElseThrow(EntityNotFoundException::new);
+		
+		//엔티티 객체 -> dto객체로 변환
+		ItemFormDto itemFormDto = ItemFormDto.of(item);
+		
+		//상품의 이미지 정보를 넣어준다.
+		itemFormDto.setItemImgDtoList(itemImgDtoList);
+		
+		return itemFormDto;
+	}
+	
+	
+	
+	
+	@Transactional(readOnly = true)
+	public Page<MainCafeDto> getMainCafeRegisterPage(CafeSearchDto cafeSearchDto, Pageable pageable){
+		return cafeRepository.getMainCafeRegisterPage(cafeSearchDto, pageable);
 	}
 	
 	

@@ -15,18 +15,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
-@Table(name = "Cafe")  //테이블 명 지정
 @Entity
+@Table(name = "cafe")  //테이블 명 지정
 @Getter
 @Setter
 @ToString
-public class CafeRegister {
+public class CafeRegister{
+	
 
 	
-	@Id
-	@Column(name = "cafe_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id 
+	@Column(name = "cafe_id") 
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private Long id;   //카페 코드 
 
 	@Column(nullable = false, length = 100)

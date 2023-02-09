@@ -11,7 +11,7 @@ public class MainCafeDto {
 	
 	private Long id;
 	
-	private String business_name;
+	private String businessName;
 	
 	private String address;
 	
@@ -19,9 +19,9 @@ public class MainCafeDto {
 
 	
 	@QueryProjection  //쿼리 dsl로 조회를 할 때 DTO를 바로 받음
-	public MainCafeDto(Long id, String business_name, String address, String imgUrl) {
+	public MainCafeDto(Long id, String businessName, String address, String imgUrl) {
 		this.id = id;
-		this.business_name = business_name;
+		this.businessName = businessName;
 		this.address = address;
 		this.imgUrl = imgUrl;
 	}

@@ -45,6 +45,7 @@ public class CafeRegisterDto {
 	
 	public static CafeRegisterDto of(CafeRegister cafeRegister) {
 		return modelMapper.map(cafeRegister, CafeRegisterDto.class);
+		
 	}
 	
 	

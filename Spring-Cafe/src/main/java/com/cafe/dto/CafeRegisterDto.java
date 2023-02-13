@@ -3,6 +3,8 @@ package com.cafe.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 import org.modelmapper.ModelMapper;
@@ -15,7 +17,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CafeRegisterDto {
-	
 	
 	private Long id;
 
@@ -33,7 +34,7 @@ public class CafeRegisterDto {
 
 	private String info;
 	
-	private List<regCafeImgDto> regCafeImgDtoList = new ArrayList<>();  //카페의 이미지 정보를 저장하는 리스트, 하나의 카페에 이미지는 다수 
+	private List<CafeImgDto> regCafeImgDtoList = new ArrayList<>();  //카페의 이미지 정보를 저장하는 리스트, 하나의 카페에 이미지는 다수 
 	
 	private List<Long> refCafeImgId = new ArrayList<>();   //카페 이미지 id를 저장, 수정 시에 이미지 id를 담아주는 용도
 	

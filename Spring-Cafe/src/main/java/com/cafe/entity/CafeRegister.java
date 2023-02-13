@@ -15,8 +15,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+
 @Table(name = "cafe")  //테이블 명 지정
+@Entity
 @Getter
 @Setter
 @ToString

@@ -66,9 +66,11 @@
     <!-- detail frame start -->
       <div style="border: 1px solid white; width:52%; margin: 0 auto; margin-top: 50px; display: flex; flex-wrap: wrap; background-color: white;">
       <!-- detail img -->
+      <input type="hidden" id="cafeId" th:value="${cafe.id}">[[${cafe.id}]]
+      
       <div style="padding: 15px; width: 100%; display: flex;">
       	<div style="border-radius: 20px; overflow: hidden; border: 1px solid white; box-shadow: 0px 6px 11px -6px #000000;">
-      	<img src="/img/mainImages/1-re.jpg" alt="img" style="height: 400px;" id="detailMainImg">
+      	<img th:src="${cafe.regCafeImgDtoList[0].imgUrl}" th:alt="${cafe.businessName}" style="height: 400px;" id="detailMainImg">
         </div>
       	<!-- kakao map -->
       	<div>
@@ -79,18 +81,12 @@
       	<div style="margin: 0 auto; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 100%; background-color: rgba(0,0,0,0.5);">
       	          <div class="slides-1 portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
+            <th:block th:each="cafes, status:${cafe}">
               <div class="swiper-slide">
-                <img src="/img/mainImages/5.jpg" alt="img" style="width: 100px; height: 100px;"/>
+              <!-- .count 는 1부터 시작 -->
+                <img th:src="${cafes.regCafeImgDtoList[cafes.count].imgUrl}" th:alt="${cafes.businessName}" style="width: 100px; height: 100px;"/>
               </div>
-               <div class="swiper-slide">
-                <img src="/img/mainImages/2.jpg" alt="img" style="width: 100px; height: 100px;" class="swiper-sub-img">	
-              </div>
-                <div class="swiper-slide">
-                <img src="/img/mainImages/3.jpg" alt="img" style="width: 100px; height: 100px;" class="swiper-sub-img" />
-              </div>
-                 <div class="swiper-slide">
-                <img src="/img/mainImages/4.jpg" alt="img" style="width: 100px; height: 100px;" class="swiper-sub-img" />
-              </div>
+	</th:block>
             </div>
           </div>
          <!--  <div class="swiper-button-prev"></div>
@@ -99,15 +95,16 @@
       	<!-- 상호명, 가게 개요 및 메뉴 상세 내용 -->
       	<div style="background:white; color:black; width: 100%; border: 1px solid black;">
       	<div style="padding-left: 40px;" class="store-info">
-      	<p><h2><span>상호명</span></h2>
+      	<p><h2><span >[[${cafe.businessName}]]</span></h2>
 		<ul style="list-style-type: none;">
-		<li>주소 : 서울 어딘가</li>
+		<li>주소 : [[${cafe.address}]]</li>
 		<li>소개 : <a href="instagram.com/roof808" style="text-decoration: none;">instagram.com/roof808</a></li>
-		<li>연락처 : 010-4144-1213</li>
+		<li>연락처 : [[${cafe.phone}]]</li>
 		<li>해시태그 : #카페 #커피 #흐음</li>
 		</ul>
 		<div style="text-align: center;">
-		<img src=" /img/mainImages/쿠오트_메뉴4.jpeg" alt="menu" style="">
+		<span>[[${cafe.info}]]</span>
+		<!-- <img src=" /img/mainImages/쿠오트_메뉴4.jpeg" alt="menu" style=""> -->
 		</div>
 		</div>
       	</div>

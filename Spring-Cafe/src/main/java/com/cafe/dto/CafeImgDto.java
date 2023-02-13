@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class regCafeImgDto {
+public class CafeImgDto {
 
 	private Long id;
 	
@@ -23,8 +23,8 @@ public class regCafeImgDto {
 	
 	private static ModelMapper modelMapper = new ModelMapper();
 	
-	public static regCafeImgDto of(CafeImg cafeImg) {
-		return modelMapper.map(cafeImg, regCafeImgDto.class);//맵핑 라우터 같은 기능
+	public static CafeImgDto of(CafeImg cafeImg) {
+		return modelMapper.map(cafeImg, CafeImgDto.class);//맵핑 라우터 같은 기능
 	} 
 	
 }

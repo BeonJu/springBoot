@@ -33,9 +33,9 @@ public class CafeImg {
 	
 	private String repimgYn;  //대표 이미지 여부
 	
-	@ManyToOne(fetch = FetchType.LAZY)  //지연로딩  애만 가져 올거임
 	@JoinColumn(name = "cafe_id")
-	private CafeRegister cafeRegister;
+	@ManyToOne(fetch = FetchType.LAZY)  //지연로딩  애만 가져 올거임
+	private CafeRegister cafeId;
 	
 	// 원본 이미지 파일명, 업데이트 할 이미지 파일명
 	//이미지 경로를 파라메터로 받아서 이미지 정보를 업데이트 하는 메소스 

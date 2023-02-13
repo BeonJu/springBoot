@@ -14,4 +14,5 @@ public interface CafeRepository extends JpaRepository<CafeRegister, Long>, Query
 	
 	List<CafeRegister> findByBusinessNameLike(String businessName);
 	
+	
 }

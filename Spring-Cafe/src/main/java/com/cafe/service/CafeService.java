@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ import com.cafe.dto.CafeDetailDto;
 import com.cafe.dto.CafeRegisterDto;
 import com.cafe.dto.CafeSearchDto;
 import com.cafe.dto.MainCafeDto;
+import com.cafe.dto.StoreListDto;
 import com.cafe.dto.CafeImgDto;
 import com.cafe.entity.CafeImg;
 import com.cafe.entity.CafeRegister;
@@ -41,8 +43,8 @@ public class CafeService {
 		
 		//이미지 등록
 		for(int i=0; i< cafeImgFileList.size(); i++) {
-			CafeImg cafeImg = new CafeImg();
-			cafeImg.setCafeId(cafeRegister);
+			CafeImg cafeImg = new CafeImg();	
+			cafeImg.setCafe(cafeRegister);
 			
 			//첫번째 이미지 일때 애표 상품 이미지 여부 지정
 			if( i==0) {
@@ -73,10 +75,8 @@ public class CafeService {
 			cafeImgDtoList.add(cafeImgDto);
 		}
 		
-		//2. cafe테이블에 있는 데이터를 가져온다.
-		CafeRegister cafeRegister = cafeRepository.findById(cafeId)
-				.orElseThrow(EntityNotFoundException::new);
-			
+		//2. cafe테이블에 있는 데이터를 가져온다. 
+		CafeRegister cafeRegister = cafeRepository.getDetailCafeId(cafeId);
 
 		//엔티티 객체 -> dto객체로 변환
 		CafeRegisterDto cafeRegisterDto = CafeRegisterDto.of(cafeRegister);
@@ -93,6 +93,14 @@ public class CafeService {
 	@Transactional(readOnly = true)
 	public Page<MainCafeDto> getMainCafeRegisterPage(CafeSearchDto cafeSearchDto, Pageable pageable){
 		return cafeRepository.getMainCafeRegisterPage(cafeSearchDto, pageable);
+	}
+	
+	
+	//메인 페이지 카페 리스트 불러오기
+	@Transactional(readOnly = true)
+	public Page<StoreListDto> getStoreListPage(CafeSearchDto cafeSearchDto, Pageable pageable){
+		return cafeRepository.getStoreListPage(cafeSearchDto, pageable);
+		
 	}
 	
 	

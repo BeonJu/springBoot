@@ -35,7 +35,7 @@ public class CafeImg {
 	
 	@JoinColumn(name = "cafe_id")
 	@ManyToOne(fetch = FetchType.LAZY)  //지연로딩  애만 가져 올거임
-	private CafeRegister cafeId;
+	private CafeRegister cafe;
 	
 	// 원본 이미지 파일명, 업데이트 할 이미지 파일명
 	//이미지 경로를 파라메터로 받아서 이미지 정보를 업데이트 하는 메소스 

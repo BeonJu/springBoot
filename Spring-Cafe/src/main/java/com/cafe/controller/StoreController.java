@@ -1,18 +1,26 @@
 package com.cafe.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe.dto.CafeRegisterDto;
+import com.cafe.dto.CafeSearchDto;
+import com.cafe.dto.MainCafeDto;
+import com.cafe.dto.StoreListDto;
 import com.cafe.service.CafeService;
 
 import lombok.RequiredArgsConstructor;
@@ -59,6 +67,36 @@ public class StoreController {
 	public String storeDelete() {
 		
 		return "/store/storeDelete";
+	}
+	
+	@GetMapping(value = "/admin/store/list")
+	public String storeList(CafeSearchDto cafeSearchDto, Optional<Integer> page, Model model) {
+		
+		Pageable pageable = PageRequest.of(page.isPresent()? page.get() : 0, 6);
+		Page<StoreListDto> list = cafeService.getStoreListPage(cafeSearchDto, pageable);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("cafeSearchDto",cafeSearchDto);
+		model.addAttribute("maxPage",5);
+		
+		return "/store/storeList";
+	}
+	
+	
+	//가게 상세 페이지
+	@GetMapping(value = "/admin/store/{listId}")
+	public String itemDtl(Model model, @PathVariable("listId") Long cafeId) {
+		CafeRegisterDto cafeRegisterDto = cafeService.getCafeDtl(cafeId);
+				model.addAttribute("cafe", cafeRegisterDto);
+		return "item/itemDetail";
+	}
+	
+	
+	//가게 상세 페이지
+	@GetMapping(value = "/admin/store/detail")
+	public String storeDatailTest() {
+ 
+		return "store/storeDetail";
 	}
 	
 	

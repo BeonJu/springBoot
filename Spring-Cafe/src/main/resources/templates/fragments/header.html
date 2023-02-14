@@ -40,7 +40,7 @@
 			</div>
 			<!-- container-fluid -->
 			<div class="d-flex align-items-center">
-				<!-- admin store register & store delete -->
+				<!-- admin store register & store delete & sotre list -->
 				<div class="header-social-links" style="display: flex;">
 					<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 						<a class="cta-btn-storeReg" href="/admin/store/register">가게 등록</a>
@@ -51,10 +51,14 @@
 					<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 						<a class="cta-btn-storeDel" href="/admin/store/delete">가게 삭제</a>
 					</div>
+					<span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+					<div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+						<a class="cta-btn-storeDel" href="/admin/store/list">가게 목록</a>
+					</div>
 				</div>
 
 				<!-- Search input box -->
-				<div id="search" class="search">
+				<div id="search" class="search" style="margin-left: 260px;">
 					<form th:action="@{/}" method="get">
 						<input type="search" name="searchQuery" placeholder="Search">
 						<button type="submit">검색</button>

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.cafe.entity.CafeImg;
+import com.cafe.entity.CafeRegister;
 
 
 public interface CafeImgRepository  extends JpaRepository<CafeImg, Long> {

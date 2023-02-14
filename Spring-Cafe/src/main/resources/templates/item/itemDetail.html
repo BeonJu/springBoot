@@ -14,18 +14,17 @@
 	rel="stylesheet">
 
 <!-- swiper css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
 
 
 <!-- Vendor CSS Files -->
-<link href="/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-<link href="/vendor/glightbox/css/glightbox.min.css"
-	rel="stylesheet">
+<link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 <link href="/vendor/aos/aos.css" rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -33,10 +32,18 @@
 <title>Insert title here</title>
 <!-- 각 페이지의 스크립트가 작성될 위치 -->
 
+
+
 <th:block layout:fragment="script">
+
 	<script th:inline="javascript">
+		
 	</script>
 </th:block>
+
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d1a822c6c6735b839c9e379f79a1f6be&libraries=services"></script>
+
 <!-- =======================================================
   * Template Name: PhotoFolio - v1.2.0
   * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
@@ -47,88 +54,160 @@
 
 <body>
 
-<!-- themleaf fragment content start -->
+	<!-- themleaf fragment content start -->
 	<div layout:fragment="content">
-	
-	<main id="main" data-aos="fade" data-aos-delay="1500">
-    <!-- ======= End Page Header ======= -->
-    <div class="page-header d-flex align-items-center" style="top: 100px;">
-      <div class="container position-relative">
-        <div class="row d-flex justify-content-center">
-          <div class="col-lg-6 text-center" >
-            <h2>Store show info.</h2>
-          </div>
-        </div>
-      </div>
-    </div><!-- End Page Header -->
-    <!-- ======= Gallery Single Section ======= -->
-    <section id="gallery-single" class="gallery-single">
-    <!-- detail frame start -->
-      <div style="border: 1px solid white; width:52%; margin: 0 auto; margin-top: 50px; display: flex; flex-wrap: wrap; background-color: white;">
-      <!-- detail img -->
-      <input type="hidden" id="cafeId" th:value="${cafe.id}">[[${cafe.id}]]
-      
-      <div style="padding: 15px; width: 100%; display: flex;">
-      	<div style="border-radius: 20px; overflow: hidden; border: 1px solid white; box-shadow: 0px 6px 11px -6px #000000;">
-      	<img th:src="${cafe.regCafeImgDtoList[0].imgUrl}" th:alt="${cafe.businessName}" style="height: 400px;" id="detailMainImg">
-        </div>
-      	<!-- kakao map -->
-      	<div>
+
+		<main id="main" data-aos="fade" data-aos-delay="1500">
+			<!-- ======= End Page Header ======= -->
+			<div class="page-header d-flex align-items-center"
+				style="top: 100px;">
+				<div class="container position-relative">
+					<div class="row d-flex justify-content-center">
+						<div class="col-lg-6 text-center">
+							<h2>Store show info.</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Page Header -->
+			<!-- ======= Gallery Single Section ======= -->
+			<section id="gallery-single" class="gallery-single">
+				<!-- detail frame start -->
+				<div
+					style="border: 1px solid white; width: 52%; margin: 0 auto; margin-top: 50px; display: flex; flex-wrap: wrap; background-color: white;">
+					<!-- detail img -->
+					<input type="hidden" id="cafeId" th:value="${cafe.id}">[[${cafe.id}]]
+
+					<div style="padding: 15px; width: 100%; display: flex;">
+						<div
+							style="border-radius: 20px; overflow: hidden; border: 1px solid white; box-shadow: 0px 6px 11px -6px #000000;">
+							<img th:src="${cafe.regCafeImgDtoList[0].imgUrl}"
+								th:alt="${cafe.businessName}" style="height: 400px;"
+								id="detailMainImg">
+						</div>
+						<!-- kakao map -->
+						<div style="margin: 0 auto;">
+						<div id="map" style=" margin-left:10px; width: 500px; height: 400px; border-radius: 15px; border: 1px solid white; box-shadow: 0px 6px 11px -6px #000000; " ></div>
+						</div>
+						<script>
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+							mapOption = {
+								center : new kakao.maps.LatLng(33.450701,
+										126.570667), // 지도의 중심좌표
+								level : 1
+							// 지도의 확대 레벨
+							};
+
+							// 지도를 생성합니다    
+							var map = new kakao.maps.Map(mapContainer,
+									mapOption);
+
+							// 주소-좌표 변환 객체를 생성합니다
+							var geocoder = new kakao.maps.services.Geocoder();
+
+							// 주소로 좌표를 검색합니다
+							geocoder
+									.addressSearch(
+											'[[${cafe.address}]]',
+											function(result, status) {
+
+												// 정상적으로 검색이 완료됐으면 
+												if (status === kakao.maps.services.Status.OK) {
+
+													var coords = new kakao.maps.LatLng(
+															result[0].y,
+															result[0].x);
+
+													// 결과값으로 받은 위치를 마커로 표시합니다
+													var marker = new kakao.maps.Marker(
+															{
+																map : map,
+																position : coords
+															});
+
+													// 인포윈도우로 장소에 대한 설명을 표시합니다
+													var infowindow = new kakao.maps.InfoWindow(
+															{
+																content : '<div style="width:150px;text-align:center;padding:6px 0; color:black;">[[${cafe.businessName}]]</div>'
+															});
+													infowindow
+															.open(map, marker);
+
+													// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+													map.setCenter(coords);
+												}
+											});
+						</script>
+
+						<!-- 
       	<img src="/img/kakoMap.png" alt="kakaoMap" style="height: 400px; padding: 0; margin: 0; margin-left: 5px; border: 1px solid #9ACD32; box-shadow: 0px 6px 11px -6px #000000;">
-      	</div>
-      	</div>
-      	<!-- 슬라이드 -->
-      	<div style="margin: 0 auto; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 100%; background-color: rgba(0,0,0,0.5);">
-      	          <div class="slides-1 portfolio-details-slider swiper">
-            <div class="swiper-wrapper align-items-center">
-            <th:block th:each="cafes, status:${cafe}">
-              <div class="swiper-slide">
-              <!-- .count 는 1부터 시작 -->
-                <img th:src="${cafes.regCafeImgDtoList[cafes.count].imgUrl}" th:alt="${cafes.businessName}" style="width: 100px; height: 100px;"/>
-              </div>
-	</th:block>
-            </div>
-          </div>
-         <!--  <div class="swiper-button-prev"></div>
+      	 -->
+
+					</div>
+					<!-- 슬라이드 -->
+					<div
+						style="margin: 0 auto; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 100%; background-color: rgba(0, 0, 0, 0.5);">
+						<div class="slides-1 portfolio-details-slider swiper">
+							<div class="swiper-wrapper align-items-center">
+								<th:block th:each="cafes, status:${cafe}">
+									<div class="swiper-slide">
+										<!-- .count 는 1부터 시작 -->
+										<img th:src="${cafes.regCafeImgDtoList[status.count].imgUrl}"
+											th:alt="${cafes.businessName}"
+											style="width: 100px; height: 100px;" />
+									</div>
+								</th:block>
+							</div>
+						</div>
+						<!--  <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div> -->
-      	</div>
-      	<!-- 상호명, 가게 개요 및 메뉴 상세 내용 -->
-      	<div style="background:white; color:black; width: 100%; border: 1px solid black;">
-      	<div style="padding-left: 40px;" class="store-info">
-      	<p><h2><span >[[${cafe.businessName}]]</span></h2>
-		<ul style="list-style-type: none;">
-		<li>주소 : [[${cafe.address}]]</li>
-		<li>소개 : <a href="instagram.com/roof808" style="text-decoration: none;">instagram.com/roof808</a></li>
-		<li>연락처 : [[${cafe.phone}]]</li>
-		<li>해시태그 : #카페 #커피 #흐음</li>
-		</ul>
-		<div style="text-align: center;">
-		<span>[[${cafe.info}]]</span>
-		<!-- <img src=" /img/mainImages/쿠오트_메뉴4.jpeg" alt="menu" style=""> -->
-		</div>
-		</div>
-      	</div>
-      	
-      <!-- detail frame end -->
-        
-        </div>
-          <!-- 예약, 문의 버튼 / 가게 상세 내용 div 옆에 고정 -->
-          <div class="col-lg-3 reser-btn" style="position: sticky; left: 1500px; bottom: 400px; width: 200px;">
-            <div class="portfolio-info">
-              <h3>Reservation Here</h3>
-              <ul>
-                <li><a href="/item/reservation" class="btn-visit align-self-start">예약 하기</a></li>
-                 <li><a href="#" class="btn-visit align-self-start">문의 하기</a></li>
-              </ul>
-            </div>
-          </div>
-          
-    </section><!-- End Gallery Single Section -->
-  </main><!-- End #main -->
+					</div>
+					<!-- 상호명, 가게 개요 및 메뉴 상세 내용 -->
+					<div
+						style="background: white; color: black; width: 100%; border: 1px solid black;">
+						<div style="padding-left: 40px;" class="store-info">
+							<p>
+							<h2>
+								<span>[[${cafe.businessName}]]</span>
+							</h2>
+							<ul style="list-style-type: none;">
+								<li>주소 : [[${cafe.address}]]</li>
+								<li>소개 : <a href="instagram.com/roof808"
+									style="text-decoration: none;">instagram.com/roof808</a></li>
+								<li>연락처 : [[${cafe.phone}]]</li>
+								<li>해시태그 : #카페 #커피 #흐음</li>
+							</ul>
+							<div style="text-align: center;">
+								<span>[[${cafe.info}]]</span>
+								<!-- <img src=" /img/mainImages/쿠오트_메뉴4.jpeg" alt="menu" style=""> -->
+							</div>
+						</div>
+					</div>
+
+					<!-- detail frame end -->
+
+				</div>
+				<!-- 예약, 문의 버튼 / 가게 상세 내용 div 옆에 고정 -->
+				<div class="col-lg-3 reser-btn"
+					style="position: sticky; left: 1500px; bottom: 400px; width: 200px;">
+					<div class="portfolio-info">
+						<h3>Reservation Here</h3>
+						<ul>
+							<li><a href="/item/reservation"
+								class="btn-visit align-self-start">예약 하기</a></li>
+							<li><a href="#" class="btn-visit align-self-start">문의 하기</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</section>
+			<!-- End Gallery Single Section -->
+		</main>
+		<!-- End #main -->
 	</div>
-	
-	
-		<!-- Vendor JS Files -->
+
+
+	<!-- Vendor JS Files -->
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/vendor/swiper/swiper-bundle.min.js"></script>
 	<script src="/vendor/glightbox/js/glightbox.min.js"></script>
@@ -138,8 +217,13 @@
 	<!-- Template Main JS File -->
 	<script src="/js/main.js"></script>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<!-- Swiper JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<!-- kakoMap key -->
+
+
+
 
 </body>
 </html>

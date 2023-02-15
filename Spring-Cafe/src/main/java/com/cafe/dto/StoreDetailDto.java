@@ -25,6 +25,6 @@ public class StoreDetailDto {
 	
 	private List<StoreReservationDateDto> reservationDate = new ArrayList<>();
 	
-	private List<StoreMenu> menus = new ArrayList<>();
+	private List<StoreMenuDto> menus = new ArrayList<>();
 	
 }

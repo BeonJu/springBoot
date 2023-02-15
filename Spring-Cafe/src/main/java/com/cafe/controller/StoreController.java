@@ -91,13 +91,7 @@ public class StoreController {
 		return "item/itemDetail";
 	}
 	
-	
-	//가게 상세 페이지
-	@GetMapping(value = "/admin/store/detail")
-	public String storeDatailTest() {
- 
-		return "store/storeDetail";
-	}
+
 	
 	
 }
